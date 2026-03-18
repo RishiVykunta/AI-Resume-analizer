@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Zap } from "lucide-react";
+import { Github, Instagram, Linkedin, Zap } from "lucide-react";
 
 export function Footer() {
   return (
@@ -20,13 +20,13 @@ export function Footer() {
               Built for modern professionals and recruiters.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 text-secondary hover:text-white hover:bg-white/10 transition-all">
+              <a href="https://github.com/RishiVykunta" target="_blank" rel="noopener noreferrer" className="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 text-secondary hover:text-white hover:bg-white/10 transition-all">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 text-secondary hover:text-white hover:bg-white/10 transition-all">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.instagram.com/rish_i__x?igsh=MW5kOXpjbTNzcGc3bw%3D%3D" target="_blank" rel="noopener noreferrer" className="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 text-secondary hover:text-white hover:bg-white/10 transition-all">
+                <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 text-secondary hover:text-white hover:bg-white/10 transition-all">
+              <a href="https://www.linkedin.com/in/rishi-vykunta-1154a932b/" target="_blank" rel="noopener noreferrer" className="h-10 w-10 flex items-center justify-center rounded-full bg-white/5 text-secondary hover:text-white hover:bg-white/10 transition-all">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -45,10 +45,10 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-white mb-6">Connect</h4>
             <ul className="space-y-4 text-secondary text-sm font-medium">
-              <li><a href="#" className="hover:text-primary transition-colors">Twitter</a></li>
+              <li><a href="https://www.instagram.com/rish_i__x?igsh=MW5kOXpjbTNzcGc3bw%3D%3D" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Discord</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/rishi-vykunta-1154a932b/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
+              <li><a href="https://github.com/RishiVykunta" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GitHub</a></li>
             </ul>
           </div>
         </div>
