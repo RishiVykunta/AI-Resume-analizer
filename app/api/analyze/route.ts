@@ -3,6 +3,8 @@ import { extractTextFromPDF } from "@/lib/pdf-parser";
 import { analyzeResume } from "@/lib/ai";
 import { prisma } from "@/lib/db";
 
+export const maxDuration = 60; // Allow enough time for Gemini AI to process
+
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();

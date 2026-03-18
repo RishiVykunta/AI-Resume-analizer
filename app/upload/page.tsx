@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UploadBox } from "@/components/UploadBox";
 import { motion } from "framer-motion";
-import axios from "axios";
 
 export default function UploadPage() {
   const [isUploading, setIsUploading] = useState(false);
@@ -16,8 +15,17 @@ export default function UploadPage() {
       const formData = new FormData();
       formData.append("file", file);
       
-      const response = await axios.post("/api/analyze", formData);
-      const data = response.data;
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Upload failed: ${response.status} ${errorText}`);
+      }
+      
+      const data = await response.json();
       
       // Navigate to dashboard with the analysis ID
       router.push(`/dashboard/${data.id}`);
