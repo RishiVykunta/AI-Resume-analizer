@@ -12,9 +12,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // This is a mock authorize function for demonstration
-        if (credentials?.email === "demo@example.com" && credentials?.password === "password") {
-          return { id: "1", name: "Demo User", email: "demo@example.com" };
+        // Accept any entered email and password for the demo purpose
+        if (credentials?.email && credentials?.password) {
+          return { 
+            id: "1", 
+            name: credentials.email.toString().split('@')[0], 
+            email: credentials.email.toString() 
+          };
         }
         return null;
       },
