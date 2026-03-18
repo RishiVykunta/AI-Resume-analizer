@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || "");
-const MODEL_NAME = "gemini-1.5-flash-latest"; // Using latest alias for better compatibility
+const MODEL_NAME = "gemini-2.5-flash"; // Using the 2.5 model natively supported by this key
 const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
 export async function analyzeResume(resumeText: string) {
