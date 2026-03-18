@@ -29,9 +29,9 @@ export default function UploadPage() {
       
       // Navigate to dashboard with the analysis ID
       router.push(`/dashboard/${data.id}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Upload failed:", error);
-      alert("Failed to analyze resume. Please try again.");
+      alert(`Error: ${error.message || "Failed to analyze resume. Please try again."}`);
     } finally {
       setIsUploading(false);
     }
