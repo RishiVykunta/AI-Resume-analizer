@@ -9,11 +9,13 @@ export default function UploadPage() {
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
 
-  const handleUpload = async (file: File) => {
+  const handleUpload = async (file: File, role: string, jd: string) => {
     setIsUploading(true);
     try {
       const formData = new FormData();
       formData.append("file", file);
+      if (role) formData.append("role", role);
+      if (jd) formData.append("jd", jd);
       
       const response = await fetch("/api/analyze", {
         method: "POST",

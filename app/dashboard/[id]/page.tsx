@@ -62,9 +62,17 @@ export default function DashboardPage() {
   return (
     <div className="space-y-12">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-        <div className="space-y-2 text-center md:text-left">
-          <h1 className="text-4xl font-extrabold">{data.fileName}</h1>
-          <p className="text-secondary text-lg italic">Analyzed on {new Date(data.createdAt).toLocaleDateString()}</p>
+        <div className="space-y-4 text-center md:text-left">
+          <div className="space-y-2">
+            <h1 className="text-4xl font-extrabold">{data.fileName}</h1>
+            <p className="text-secondary text-lg italic">Analyzed on {new Date(data.createdAt).toLocaleDateString()}</p>
+          </div>
+          {data.targetRole && (
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium">
+              <Briefcase className="h-4 w-4" />
+              Target: {data.targetRole}
+            </div>
+          )}
         </div>
         <div className="flex gap-4 print:hidden">
           <button 

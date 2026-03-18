@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const file = formData.get("file") as File;
+    const role = formData.get("role") as string | null;
+    const jd = formData.get("jd") as string | null;
 
     if (!file) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
@@ -20,13 +22,15 @@ export async function POST(req: NextRequest) {
     console.log("Text extracted, length:", text.length);
 
     console.log("Analyzing resume with Gemini...");
-    const analysisResult = await analyzeResume(text);
+    const analysisResult = await analyzeResume(text, role, jd);
     console.log("Analysis complete:", analysisResult);
 
     // Save to database
     const resume = await prisma.resume.create({
       data: {
         fileName: file.name,
+        targetRole: role || null,
+        jobDescription: jd || null,
         atsScore: analysisResult.atsScore,
         analysis: {
           create: {

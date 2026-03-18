@@ -10,10 +10,12 @@ datasource db {
 model Resume {
   id         String     @id @default(cuid())
   userId     String?    // For optional authentication
-  fileName   String
-  atsScore   Int
-  createdAt  DateTime   @default(now())
-  analysis   Analysis[]
+  fileName       String
+  targetRole     String?
+  jobDescription String?
+  atsScore       Int
+  createdAt      DateTime   @default(now())
+  analysis       Analysis[]
 }
 
 model Analysis {

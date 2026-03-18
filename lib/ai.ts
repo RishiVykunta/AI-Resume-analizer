@@ -4,12 +4,20 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || "");
 const MODEL_NAME = "gemini-2.5-flash"; // Using the 2.5 model natively supported by this key
 const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
-export async function analyzeResume(resumeText: string) {
+export async function analyzeResume(resumeText: string, targetRole?: string | null, jobDescription?: string | null) {
   console.log(`Analyzing resume with model: ${MODEL_NAME}`);
+  
+  const roleContext = targetRole ? `\nTarget Role: ${targetRole}` : "";
+  const jdContext = jobDescription ? `\nJob Description: ${jobDescription}` : "";
+
   const prompt = `
-    You are an expert ATS (Applicant Tracking System) optimizer. 
-    Analyze the following resume text and provide a structured JSON response.
+    You are an expert ATS (Applicant Tracking System) optimizer and Senior Technical Recruiter. 
+    Analyze the following resume text.
+    ${roleContext}
+    ${jdContext}
     
+    If a Target Role or Job Description is provided above, grade the resume strictly against how well it matches those specific requirements. If none are provided, grade it generally for ATS optimization best practices.
+
     Resume Text:
     ${resumeText}
     

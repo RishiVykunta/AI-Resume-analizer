@@ -6,13 +6,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface UploadBoxProps {
-  onUpload: (file: File) => void;
+  onUpload: (file: File, role: string, jd: string) => void;
   isUploading: boolean;
 }
 
 export function UploadBox({ onUpload, isUploading }: UploadBoxProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [role, setRole] = useState("");
+  const [jd, setJd] = useState("");
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -46,9 +48,9 @@ export function UploadBox({ onUpload, isUploading }: UploadBoxProps) {
 
   const handleUpload = useCallback(() => {
     if (file) {
-      onUpload(file);
+      onUpload(file, role, jd);
     }
-  }, [file, onUpload]);
+  }, [file, onUpload, role, jd]);
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -113,8 +115,31 @@ export function UploadBox({ onUpload, isUploading }: UploadBoxProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="mt-6"
+            className="mt-6 space-y-4"
           >
+            <div className="space-y-4 text-left bg-white/5 border border-white/10 p-6 rounded-3xl">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/80 pl-1">Target Role (Optional)</label>
+                <input 
+                  type="text" 
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  placeholder="e.g. Senior Frontend Developer" 
+                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-primary/50 transition-colors"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-white/80 pl-1">Job Description (Optional)</label>
+                <textarea 
+                  value={jd}
+                  onChange={(e) => setJd(e.target.value)}
+                  placeholder="Paste the job requirements here to grade your resume strictly against them..." 
+                  rows={4}
+                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-primary/50 transition-colors resize-none"
+                />
+              </div>
+            </div>
+
             <button
               onClick={handleUpload}
               disabled={isUploading}
